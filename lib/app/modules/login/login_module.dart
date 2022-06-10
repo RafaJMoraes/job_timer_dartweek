@@ -1,12 +1,16 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:job_timer/app/modules/login/controller/login.controller.dart';
 import 'package:job_timer/app/modules/login/login_view.dart';
+import 'package:modular_bloc_bind/modular_bloc_bind.dart';
 
 class LoginModule extends Module {
   @override
-  List<Bind> get binds => [];
+  List<Bind> get binds => [
+        BlocBind.lazySingleton((i) => LoginController(authService: i())) // authService -> appModule
+       ];
 
   @override
   List<ModularRoute> get routes => [
-    ChildRoute('/', child: (context, args) => const LoginView()),
-  ];
+        ChildRoute('/', child: (context, args) => LoginView(loginController: Modular.get())),
+      ];
 }
