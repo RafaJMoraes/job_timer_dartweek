@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "85483327517",
+    "project_id": "jobtimer-dw",
+    "storage_bucket": "jobtimer-dw.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:85483327517:android:6110eb6a1a7f83970ff6f4",
+        "android_client_info": {
+          "package_name": "br.com.ramaluSystens.job_timer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "85483327517-1qndh21q8u4h2ji4ksibtse0fc8p75af.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHuXjOMoUh_8U6HNsAQi6LB4hXWidcYjo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "85483327517-1qndh21q8u4h2ji4ksibtse0fc8p75af.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
