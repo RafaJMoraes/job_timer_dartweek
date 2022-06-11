@@ -2,6 +2,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:job_timer/app/core/database/database.dart';
 import 'package:job_timer/app/core/database/database.impl.dart';
 import 'package:job_timer/app/modules/home/home_module.dart';
+import 'package:job_timer/app/modules/projects/project_module.dart';
 import 'package:job_timer/app/modules/projects/register/project.register.module.dart';
 import 'package:job_timer/app/modules/splash/splash.view.dart';
 import 'package:job_timer/app/repositories/projects/project.repository.dart';
@@ -26,7 +27,7 @@ class AppModule extends Module {
     ChildRoute('/', child: (context, args)=> const SplashView()),
     ModuleRoute('/login', module: LoginModule()),
     ModuleRoute('/home', module: HomeModule()),
-    ModuleRoute('/register', module: ProjectRegisterModule()),
+    ModuleRoute('/project', module: ProjectModule()),
 
   ];
 }

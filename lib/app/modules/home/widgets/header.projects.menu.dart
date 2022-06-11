@@ -46,7 +46,7 @@ class HeaderProjectsMenu extends SliverPersistentHeaderDelegate {
                 icon: const Icon(Icons.add),
                 label:const  Text('Novo Projeto'),
                 onPressed: () async {
-                  await Modular.to.pushNamed('/register');
+                  await Modular.to.pushNamed('/project/register/');
                   controller.loadProjects();
                 },
 

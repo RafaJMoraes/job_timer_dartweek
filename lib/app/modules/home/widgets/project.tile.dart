@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:job_timer/app/core/ui/my_flutter_app_icons.dart';
 import 'package:job_timer/app/view.model/project.model.dart';
 import 'package:job_timer/app/view.model/project.task.model.dart';
@@ -34,18 +35,21 @@ class _ProjectName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(project.name),
-          Icon(
-            IconsApp.angle_double_right,
-            color: Theme.of(context).primaryColor,
-            size: 20,
-          )
-        ],
+    return InkWell(
+      onTap: ()=> Modular.to.pushNamed('/project/detail', arguments: project),
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(project.name),
+            Icon(
+              IconsApp.angle_double_right,
+              color: Theme.of(context).primaryColor,
+              size: 20,
+            )
+          ],
+        ),
       ),
     );
   }

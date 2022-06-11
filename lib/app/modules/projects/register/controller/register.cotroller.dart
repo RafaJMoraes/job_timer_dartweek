@@ -23,7 +23,7 @@ class ProjectRegisterController extends Cubit<RegisterStatus>{
           tasks: []);
 
       await _projectService.register(projectModel);
-      await Future.delayed(Duration(seconds: 2));
+      // await Future.delayed(Duration(seconds: 1));
       emit(RegisterStatus.success);
       // emit(RegisterStatus.initial);
     }catch (e,s) {

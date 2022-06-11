@@ -15,7 +15,7 @@ import 'dart:developer';
       final connection = await _database.openConnection();
 
       connection.writeTxn((isar) async {
-        return isar.projects.put(project);
+        return await isar.projects.put(project);
       });
     } on IsarError catch (e, s){
       log('Erro ao cadastrar projeto', error: e, stackTrace: s);
