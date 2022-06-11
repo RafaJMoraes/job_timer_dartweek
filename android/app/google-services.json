@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "85483327517-7lo0ojji5f14sattkuas6s2gr7mql1na.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.ramaluSystens.job_timer",
+            "certificate_hash": "49183741c65856a8def277a9e770b8e838191fe8"
+          }
+        },
+        {
           "client_id": "85483327517-1qndh21q8u4h2ji4ksibtse0fc8p75af.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,6 +37,13 @@
             {
               "client_id": "85483327517-1qndh21q8u4h2ji4ksibtse0fc8p75af.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "85483327517-u9ah10flve1ofnmlpdvbfib07gisiq9q.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "br.com.ramaluSystens.jobTimer"
+              }
             }
           ]
         }
