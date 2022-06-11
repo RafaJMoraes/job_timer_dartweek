@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:job_timer/app/entities/projects/project.status.dart';
+import 'package:job_timer/app/modules/home/controller/home.controller.dart';
 
 class HeaderProjectsMenu extends SliverPersistentHeaderDelegate {
+
+  final HomeController controller;
+
+  HeaderProjectsMenu({required this.controller});
+
   @override
   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
     // TODO: implement build
@@ -16,23 +23,32 @@ class HeaderProjectsMenu extends SliverPersistentHeaderDelegate {
             SizedBox(
               width: contraints.maxWidth * 0.5,
               child: DropdownButtonFormField<ProjectStatus>(
+                 value: ProjectStatus.inProgress,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20)
                     ),
-                    contentPadding: EdgeInsets.all(10),
+                    contentPadding: const EdgeInsets.all(10),
                     isCollapsed: true
                   ),
                   items: ProjectStatus.values.map((e) => DropdownMenuItem(value: e, child: Text(e.label))).toList(),
-                  onChanged: (value){}
+                  onChanged: (status){
+                   if(status != null) {
+                     controller.filterByStatus(status);
+                   }
+                   print(status);
+                  }
               ),
             ),
             SizedBox(
               width: contraints.maxWidth * 0.4,
               child: ElevatedButton.icon(
-                icon: Icon(Icons.add),
-                label: Text('Novo Projeto'),
-                onPressed: (){},
+                icon: const Icon(Icons.add),
+                label:const  Text('Novo Projeto'),
+                onPressed: () async {
+                  await Modular.to.pushNamed('/register');
+                  controller.loadProjects();
+                },
 
               )
             )
