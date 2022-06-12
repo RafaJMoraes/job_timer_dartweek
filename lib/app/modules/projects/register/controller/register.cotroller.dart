@@ -13,7 +13,7 @@ class ProjectRegisterController extends Cubit<RegisterStatus>{
       : _projectService = projectService,
         super(RegisterStatus.initial);
 
-  Future<void>  register({required String name, required int estimate}) async {
+  Future<void> register({required String name, required int estimate}) async {
     try{
       emit(RegisterStatus.loading);
       ProjectModel projectModel = ProjectModel(
@@ -23,9 +23,8 @@ class ProjectRegisterController extends Cubit<RegisterStatus>{
           tasks: []);
 
       await _projectService.register(projectModel);
-      // await Future.delayed(Duration(seconds: 1));
+      await Future.delayed(const Duration(seconds: 1));
       emit(RegisterStatus.success);
-      // emit(RegisterStatus.initial);
     }catch (e,s) {
       log('Erro ao regitrar projeto', error: e, stackTrace: s);
       emit(RegisterStatus.error);

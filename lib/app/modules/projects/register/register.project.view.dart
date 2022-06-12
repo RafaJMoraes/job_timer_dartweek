@@ -91,7 +91,7 @@ class _RegisterProjectViewState extends State<RegisterProjectView> {
                             final name = _nameEC.text;
                             final estimate = int.parse(_estimateEC.text);
 
-                            await widget.registerController
+                            widget.registerController
                                 .register(name: name, estimate: estimate);
                           },
                           label: 'Salvar',

@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:job_timer/app/entities/projects/project.status.dart';
+import 'package:job_timer/app/modules/projects/detail/controller/project.detail.controller.dart';
+import 'package:job_timer/app/view.model/project.model.dart';
 
 class ProjectDetailAppBar extends SliverAppBar {
-  ProjectDetailAppBar({super.key}) : super(
+  ProjectDetailAppBar({required ProjectModel project, super.key}) : super(
         expandedHeight: 100,
         pinned: true,
         centerTitle: true,
-        title:const Text('Project w'),
+        title: Text(project.name),
         toolbarHeight: 100,
         shape:const RoundedRectangleBorder(
             borderRadius:
@@ -29,11 +33,18 @@ class ProjectDetailAppBar extends SliverAppBar {
                     height: 48,
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
+                        children: [
                           Padding(
-                              padding: EdgeInsets.only(left: 10),
-                              child: Text('10 tasks')),
-                          _NewsTasks()
+                              padding:const EdgeInsets.only(left: 10),
+                              child: Text('${project.tasks.length} tasks')),
+                         Visibility(
+                             visible: project.status == ProjectStatus.inProgress,
+                             replacement:const Padding(
+                               padding:  EdgeInsets.all(8.0),
+                               child: Text('Projeto finalizado!'),
+                             ),
+                             child: _NewsTasks(project: project)
+                         )
                         ]),
                   ),
                 ),
@@ -45,29 +56,36 @@ class ProjectDetailAppBar extends SliverAppBar {
 
 }
 class _NewsTasks extends StatelessWidget {
-  const _NewsTasks({Key? key}) : super(key: key);
+  final ProjectModel project;
+  const _NewsTasks({Key? key, required this.project}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        Padding(
-          padding:const EdgeInsets.only(right: 10),
-          child: CircleAvatar(
-            backgroundColor: Theme.of(context).primaryColor,
-            child: const Icon(
-              Icons.add,
-              color: Colors.white,
-              size: 20,
+    return InkWell(
+        onTap: () async {
+          await Modular.to.pushNamed('/project/task/', arguments: project);
+          Modular.get<ProjectDetailController>().updateProject();
+        },
+      child:Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Padding(
+            padding:const EdgeInsets.only(right: 10),
+            child: CircleAvatar(
+              backgroundColor: Theme.of(context).primaryColor,
+              child: const Icon(
+                Icons.add,
+                color: Colors.white,
+                size: 20,
+              ),
             ),
           ),
-        ),
-        const Text('Adicionar tasks'),
-        const SizedBox(
-          width: 10,
-        )
-      ],
+          const Text('Adicionar tasks'),
+          const SizedBox(
+            width: 10,
+          )
+        ],
+      )
     );
   }
 }

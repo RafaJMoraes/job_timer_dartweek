@@ -1,6 +1,7 @@
 enum ProjectStatus {
    inProgress(label: 'Em andamento'),
-   finalized(label: 'Finalizado');
+   finalized(label: 'Finalizado'),
+   general(label:'Todos');
 
    final String label;
 

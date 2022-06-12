@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:job_timer/app/core/ui/my_flutter_app_icons.dart';
+import 'package:job_timer/app/modules/home/controller/home.controller.dart';
 import 'package:job_timer/app/view.model/project.model.dart';
 import 'package:job_timer/app/view.model/project.task.model.dart';
 
@@ -12,18 +13,24 @@ class ProjectTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      constraints: BoxConstraints(maxHeight: 90),
-      margin: EdgeInsets.all(10),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: Colors.grey.shade300)),
-      child: Column(
-        children: [
-          _ProjectName(project: project),
-          Expanded(child: _ProjectProgress(project: project))
-        ],
-      ),
+    return InkWell(
+        onTap: ()async {
+          await Modular.to.pushNamed('/project/detail', arguments: project);
+          Modular.get<HomeController>().updateList();
+        },
+        child: Container(
+        constraints: const BoxConstraints(maxHeight: 90),
+        margin: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(color: Colors.grey.shade300)),
+        child: Column(
+          children: [
+            _ProjectName(project: project),
+            Expanded(child: _ProjectProgress(project: project))
+          ],
+        ),
+      )
     );
   }
 }
@@ -35,21 +42,18 @@ class _ProjectName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: ()=> Modular.to.pushNamed('/project/detail', arguments: project),
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(project.name),
-            Icon(
-              IconsApp.angle_double_right,
-              color: Theme.of(context).primaryColor,
-              size: 20,
-            )
-          ],
-        ),
+    return Padding(
+      padding: const EdgeInsets.all(10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(project.name),
+          Icon(
+            IconsApp.angle_double_right,
+            color: Theme.of(context).primaryColor,
+            size: 20,
+          )
+        ],
       ),
     );
   }
